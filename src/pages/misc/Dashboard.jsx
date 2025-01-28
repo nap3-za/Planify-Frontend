@@ -3,7 +3,7 @@ import PropTypes from  "prop-types"
 import { connect } from "react-redux";
 
 function Dashboard(props) {
-    const {user} = props;
+    const {dashboard} = props;
 
     
     return (
@@ -328,14 +328,14 @@ function Dashboard(props) {
 }
 
 Dashboard.propTypes = {
-    user: PropTypes.object,
+    dashboard: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
-    user: state.account.user,
+    dashboard: state.app.dashboard,
 })
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);
 
 
 

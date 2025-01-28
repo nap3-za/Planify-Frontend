@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 
 function List(props) {
-
+	const { clients } = props;
 
     return (
         <>
@@ -267,11 +267,11 @@ function List(props) {
 }
 
 List.propTypes = {
-    user: PropTypes.object.isRequired,
+    clients: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
-    user: state.authentication.user,
+    clients: state.client.clients,
 })
 
 export default connect(mapStateToProps, null)(List);

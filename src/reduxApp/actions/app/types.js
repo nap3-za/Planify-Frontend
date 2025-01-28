@@ -8,3 +8,5 @@ export const LOADING_OFF = "LOADING_OFF";
 
 export const RESET_REDIRECT = "RESET_REDIRECT";
 export const SET_REDIRECT = "SET_REDIRECT";
+
+export const LOAD_DASHBOARD_DATA = "LOAD_DASHBOARD_DATA";

@@ -8,6 +8,8 @@ import {
 	RESET_REDIRECT,
 	SET_REDIRECT,
 
+	LOAD_DASHBOARD_DATA
+
 } from "../actions/app/types";
 
 const initialState = {
@@ -15,6 +17,18 @@ const initialState = {
 	userLoading: false,
 
 	redirect: null,
+
+	dashboard: {
+		event: null,
+		stats: null,
+
+		events: {
+			type_one: null,
+			type_two: null,
+			type_three: null,
+		}
+	},
+
 }
 
 export default function(state = initialState, action) {
@@ -52,6 +66,12 @@ export default function(state = initialState, action) {
 			return {
 				...state,
 				redirect: null,
+			}
+
+		case LOAD_DASHBOARD_DATA:
+			return {
+				...state,
+				dashboard: action.payload,
 			}
 
 		default:

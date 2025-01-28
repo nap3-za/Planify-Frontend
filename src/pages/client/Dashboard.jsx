@@ -8,6 +8,7 @@ import { initFlowbite } from "flowbite";
 
 
 function Dashboard(props) {
+	const { dashboard } = props;
     useEffect(
         () => {
     		window.initFlowbite();
@@ -628,11 +629,11 @@ function Dashboard(props) {
 }
 
 Dashboard.propTypes = {
-    user: PropTypes.object.isRequired,
+    dashboard: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = state => ({
-    user: state.authentication.user,
+    dashboard: state.client.dashboard,
 })
 
-export default connect(mapStateToProps, null)(Dashboard);
+export default connect(mapStateToProps, mapStateToProps)(Dashboard);
