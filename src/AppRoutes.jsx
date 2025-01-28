@@ -18,6 +18,8 @@ import Account from "./pages/account/Account";
 import AccountSettings from "./pages/account/AccountSettings";
 
 import EventsDashboard from "./pages/event/Dashboard";
+import EventsList from "./pages/event/List";
+import Event from "./pages/event/Event";
 
 import PageNotFound from "./pages/misc/error/PageNotFound";
 import Redirect from "./components/misc/Redirect";
@@ -37,6 +39,8 @@ function AppRoutes(props) {
 	const URL_ACCOUNT = getUrl("ACCOUNT", true);
 	const URL_ACCOUNT_SETTINGS = getUrl("ACCOUNT_SETTINGS", true);
 	const URL_EVENTS_DASHBOARD = getUrl("EVENTS_DASHBOARD", true);
+	const URL_EVENTS_LIST = getUrl("EVENTS_LIST", true);
+	const URL_EVENT = getUrl("EVENT", true);
 
 
 	return (
@@ -54,6 +58,8 @@ function AppRoutes(props) {
 			</> : <>
 				<Route exact path="/" element={<Dashboard />} />
 				<Route exact path={URL_EVENTS_DASHBOARD} element={<EventsDashboard />} />
+				<Route exact path={URL_EVENTS_LIST} element={<EventsList />} />
+				<Route exact path={URL_EVENT} element={<Event />} />
 
 				<Route exact path={URL_ACCOUNT} element={<Account />} />
 				<Route exact path={URL_ACCOUNT_SETTINGS} element={<AccountSettings />} />

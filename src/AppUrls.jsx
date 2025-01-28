@@ -17,6 +17,8 @@ const URLS = {
 	Dashboard: "/",
 
 	EVENTS_DASHBOARD: "events/",
+	EVENTS_LIST: "events/list/",
+	EVENT: "events/:code/",
 }
 
 
