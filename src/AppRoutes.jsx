@@ -17,6 +17,8 @@ import ResetPasswordConfirmDone from "./pages/authentication/password-reset/Rese
 import Account from "./pages/account/Account";
 import AccountSettings from "./pages/account/AccountSettings";
 
+import EventsDashboard from "./pages/event/Dashboard";
+
 import PageNotFound from "./pages/misc/error/PageNotFound";
 import Redirect from "./components/misc/Redirect";
 
@@ -34,6 +36,7 @@ function AppRoutes(props) {
 	const URL_RESET_PASSWORD_CONFIRM_DONE = getUrl("RESET_PASSWORD_CONFIRM_DONE", true);
 	const URL_ACCOUNT = getUrl("ACCOUNT", true);
 	const URL_ACCOUNT_SETTINGS = getUrl("ACCOUNT_SETTINGS", true);
+	const URL_EVENTS_DASHBOARD = getUrl("EVENTS_DASHBOARD", true);
 
 
 	return (
@@ -50,6 +53,7 @@ function AppRoutes(props) {
 				<Route exact path={URL_SIGN_UP} element={<Redirect component={<SignUp />} />} />
 			</> : <>
 				<Route exact path="/" element={<Dashboard />} />
+				<Route exact path={URL_EVENTS_DASHBOARD} element={<EventsDashboard />} />
 
 				<Route exact path={URL_ACCOUNT} element={<Account />} />
 				<Route exact path={URL_ACCOUNT_SETTINGS} element={<AccountSettings />} />
