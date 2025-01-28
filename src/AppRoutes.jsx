@@ -21,6 +21,10 @@ import EventsDashboard from "./pages/event/Dashboard";
 import EventsList from "./pages/event/List";
 import Event from "./pages/event/Event";
 
+import ClientsDashboard from "./pages/client/Dashboard";
+import ClientsList from "./pages/client/List";
+import Client from "./pages/client/Client";
+
 import PageNotFound from "./pages/misc/error/PageNotFound";
 import Redirect from "./components/misc/Redirect";
 
@@ -42,6 +46,10 @@ function AppRoutes(props) {
 	const URL_EVENTS_LIST = getUrl("EVENTS_LIST", true);
 	const URL_EVENT = getUrl("EVENT", true);
 
+	const URL_CLIENTS_DASHBOARD = getUrl("CLIENTS_DASHBOARD", true);
+	const URL_CLIENTS_LIST = getUrl("CLIENTS_LIST", true);
+	const URL_CLIENT = getUrl("CLIENT", true);
+
 
 	return (
 		<Routes>
@@ -60,6 +68,9 @@ function AppRoutes(props) {
 				<Route exact path={URL_EVENTS_DASHBOARD} element={<EventsDashboard />} />
 				<Route exact path={URL_EVENTS_LIST} element={<EventsList />} />
 				<Route exact path={URL_EVENT} element={<Event />} />
+				<Route exact path={URL_CLIENTS_DASHBOARD} element={<ClientsDashboard />} />
+				<Route exact path={URL_CLIENTS_LIST} element={<ClientsList />} />
+				<Route exact path={URL_CLIENT} element={<Client />} />
 
 				<Route exact path={URL_ACCOUNT} element={<Account />} />
 				<Route exact path={URL_ACCOUNT_SETTINGS} element={<AccountSettings />} />
