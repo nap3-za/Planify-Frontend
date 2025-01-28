@@ -636,4 +636,4 @@ const mapStateToProps = state => ({
     dashboard: state.client.dashboard,
 })
 
-export default connect(mapStateToProps, mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);
