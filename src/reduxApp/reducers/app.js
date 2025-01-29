@@ -23,9 +23,9 @@ const initialState = {
 		stats: null,
 
 		events: {
-			type_one: null,
-			type_two: null,
-			type_three: null,
+			type_1: null,
+			type_2: null,
+			type_3: null,
 		}
 	},
 

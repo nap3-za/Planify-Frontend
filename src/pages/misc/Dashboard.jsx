@@ -1,9 +1,13 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import PropTypes from  "prop-types"
 import { connect } from "react-redux";
 
+import { loadDashboard } from "../../reduxApp/actions/app/actions";
+
+
 function Dashboard(props) {
     const {dashboard} = props;
+
 
     
     return (
@@ -329,13 +333,15 @@ function Dashboard(props) {
 
 Dashboard.propTypes = {
     dashboard: PropTypes.object.isRequired,
+
+    loadDashboard: PropTypes.func,
 }
 
 const mapStateToProps = state => ({
     dashboard: state.app.dashboard,
 })
 
-export default connect(mapStateToProps, null)(Dashboard);
+export default connect(mapStateToProps, { loadDashboard })(Dashboard);
 
 
 

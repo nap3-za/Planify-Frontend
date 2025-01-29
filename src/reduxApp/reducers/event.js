@@ -10,17 +10,17 @@ const initialState = {
 
 		events: {
 			all: null,
-			type_one: {
+			type_1: {
 				type: null,
 				data: null,
 				stats: null,
 			},
-			type_two: {
+			type_2: {
 				type: null,
 				data: null,
 				stats: null,
 			},
-			type_three: {
+			type_3: {
 				type: null,
 				data: null,
 				stats: null,
