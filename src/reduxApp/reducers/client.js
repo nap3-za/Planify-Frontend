@@ -1,5 +1,5 @@
 import { 
-	LOAD_CLIENTS_SEARCH_RESULTS,
+	LOAD_CLIENTS_LIST,
 	LOAD_CLIENTS_DASHBOARD_DATA,
 
 } from "../actions/client/types";
@@ -35,7 +35,7 @@ const initialState = {
 export default function(state = initialState, action) {
 	switch(action.type) {
 
-		case LOAD_CLIENTS_SEARCH_RESULTS:
+		case LOAD_CLIENTS_LIST:
 			return {
 				...state,
 				clients: action.payload,

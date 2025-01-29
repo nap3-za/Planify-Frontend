@@ -18,11 +18,11 @@ const URLS = {
 
 	EVENTS_DASHBOARD: "events/",
 	EVENTS_LIST: "events/list/",
-	EVENT: "events/:code/",
+	EVENT: "events/:id/",
 
 	CLIENTS_DASHBOARD: "clients/",
 	CLIENTS_LIST: "clients/list/",
-	CLIENT: "clients/:code",
+	CLIENT: "clients/:id",
 }
 
 
