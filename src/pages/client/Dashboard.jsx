@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import { getUrl } from "../../AppUrls"
 import { initFlowbite } from "flowbite";
 
+import { loadClientsDashboard } from "../../reduxApp/actions/client/actions";
+
 
 function Dashboard(props) {
 	const { dashboard } = props;
@@ -15,12 +17,16 @@ function Dashboard(props) {
         }
     )
 
+    console.log(dashboard)
+
 	const URL_CLIENTS_LIST = getUrl("CLIENTS_LIST");
 	const URL_CLIENT = getUrl("CLIENT");
 
     return (
         <>
-       
+       	<button onClick={props.loadClientsDashboard}>
+       		Load Dash
+       	</button>
         <div className="p-4 block sm:flex items-center justify-between rounded-lg  lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
             <div className="w-full mb-1">
                 <div className="sm:flex">
@@ -453,7 +459,7 @@ function Dashboard(props) {
                         </span>
                       </div>
 
-                          <button type="button" data-modal-target="add-journal-modal" data-modal-toggle="add-journal-modal" className="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                          <button type="button" className="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
                           </button>
                     </div>
@@ -630,10 +636,12 @@ function Dashboard(props) {
 
 Dashboard.propTypes = {
     dashboard: PropTypes.object.isRequired,
+
+    loadClientsDashboard: PropTypes.func,
 }
 
 const mapStateToProps = state => ({
     dashboard: state.client.dashboard,
 })
 
-export default connect(mapStateToProps, null)(Dashboard);
+export default connect(mapStateToProps, { loadClientsDashboard })(Dashboard);
