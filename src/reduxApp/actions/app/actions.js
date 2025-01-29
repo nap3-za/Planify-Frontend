@@ -16,7 +16,7 @@ import {
 	EP_DASHBOARD_DATA,
 } from "../../../AppEndpoints";
 
-import { tokenConfigurator } from "../../../Utilities";
+import { tokenConfigurator, serializeGetData } from "../../../Utilities";
 
 import { raiseErrors, createMessage } from "../messages/actions";
 
@@ -42,17 +42,21 @@ export const getFieldChoices = (populateFieldChoices, formID) => (dispatch, getS
 		})
 }
 
-export const getPaginatedObjects = (populate, currentPage) => (dispatch, getState) => {
-	axios.get(currentPage, tokenConfigurator(getState))
+
+export const getPaginatedList = (populate, endpoint, queries) => (dispatch, getState) => {
+	const EP_LIST = endpoint + "?" + serializeGetData(queries);
+
+	axios.get(EP_LIST, tokenConfigurator(getState))
 		.then(response => {
 			populate(response.data);
+			dispatch({type: LOADING_OFF});
 		}).catch(error => {
-			if (error.response) {
-				dispatch(raiseErrors(error.response.data, error.response.status));
-			}
+			dispatch({type: LOADING_OFF});
+			dispatch(raiseErrors(error.response.data, error.response.status));
 			populate(null);
 		})
 }
+
 
 export const getObject = (populate, endpoint, objectID) => (dispatch, getState) => {
 	axios.get(endpoint + objectID + "/", tokenConfigurator(getState))
