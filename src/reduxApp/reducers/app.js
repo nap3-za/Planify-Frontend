@@ -19,14 +19,12 @@ const initialState = {
 	redirect: null,
 
 	dashboard: {
-		event: null,
+		event: {
+			tasks: null,
+		},
 		stats: null,
 
-		events: {
-			type_1: null,
-			type_2: null,
-			type_3: null,
-		}
+		events: null,
 	},
 
 }

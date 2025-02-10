@@ -87,7 +87,12 @@ export const loadEventsDashboard = () => (dispatch, getState) => {
 }
 
 export const listEvents = (queries) => (dispatch, getState) => {
-	const EP_EVENTS = EP_EVENTS_VIEWSET + "?" + serializeGetData(queries);
+	let EP_EVENTS = "";
+	if (queries === null) {
+		EP_EVENTS = EP_EVENTS_VIEWSET;
+	} else {
+		EP_EVENTS = EP_EVENTS_VIEWSET + "?" + serializeGetData(queries);
+	}
 
 	axios.get(EP_EVENTS, tokenConfigurator(getState))
 		.then(response => {

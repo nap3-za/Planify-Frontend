@@ -1,11 +1,23 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState, useRef, Suspense } from "react";
+import { Link, Navigate, useParams } from "react-router-dom";
 import PropTypes from  "prop-types"
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+
+import { createEvent } from "../../reduxApp/actions/event/actions";
+import { getFieldChoices } from "../../reduxApp/actions/app/actions";
+
+import { Select, Label } from "flowbite-react";
+
+import Spinner from "../../components/misc/Spinner";
+import { getUrl } from "../../AppUrls";
+
+import {
+	FC_CREATE_UPDATE_EVENT,
+	getOptions,
+} from "../../FieldChoices"
 
 import { initFlowbite } from "flowbite";
 
-import { loadEventsDashboard } from "../../reduxApp/actions/event/actions";
 
 
 function CreateEvent(props) {
@@ -15,9 +27,73 @@ function CreateEvent(props) {
         }
     );
 
+    // + + + Field Choices + + + 
+
+    const [fieldChoices, setFieldChoices] = useState({
+      clients: null,
+    })
+
+	function handleCreateEventClick(event) {
+	    const populateFieldChoices = (data) => {setFieldChoices(data)}
+      props.getFieldChoices(populateFieldChoices, FC_CREATE_UPDATE_EVENT);
+			
+	}
+
+    let CLIENTS = [];
+    if (fieldChoices !== null && fieldChoices.clients !== null) {
+    	CLIENTS = getOptions("Client", fieldChoices.clients);
+    }
+
+	// - - - Field Choices - - -
+
+
+	// + + + Form handling + + +
+
+	const createEventForm = useRef(null);
+	const [createEventData, setCreateEventData] = useState({
+		symbol: null,
+		journal: null, trading_model: null, entry_model: null,
+		risk_appetite: null, riskreward_profile: null,
+		order_type: null,
+		fill_price: null, exit_price: null,
+		stoploss_price: null, takeprofit_price: null,
+		execution_time: null, exit_time: null,
+		trade_review: null,	
+	})
+
+	function handleCreateEventChange(event) {
+	  const { name, value } = event.target
+	  event.preventDefault();
+	  setCreateEventData((prevState) => {
+			return {
+			  ...createEventData,
+			  [name]: value,
+			};
+	  });
+	}
+
+	function handleCreateEventSubmit(event) {
+	  event.preventDefault();
+
+	  props.createEvent(createEventData);
+	  clearCreateEventForm();
+	  
+		if (props.clickEvent !== undefined) {
+			props.clickEvent();
+		}
+	}
+
+	function clearCreateEventForm() {
+	  createEventForm.current && createEventForm.current.reset();
+	}
+
+	// - - - Form handling - - -
+
+
+
     return (
         <>
-          <button type="button" data-modal-target="add-event-modal" data-modal-toggle="add-event-modal" className="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+          <button onClick={handleCreateEventClick} type="button" data-modal-target="add-event-modal" data-modal-toggle="add-event-modal" className="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
               <svg className="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
               Add Event
           </button>
@@ -106,8 +182,8 @@ function CreateEvent(props) {
 }
 
 CreateEvent.propTypes = {
-    loadEventsDashboard: PropTypes.object,
+    createEvent: PropTypes.object,
 }
 
 
-export default connect(null, { loadEventsDashboard })(CreateEvent);
+export default connect(null, { createEvent })(CreateEvent);
